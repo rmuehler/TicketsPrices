@@ -6,8 +6,8 @@ namespace TicketsPrices
     {
         static void Main(string[] args)
         {
-            uint age;
-            bool isStudent;
+            uint age = default(uint);
+            bool isStudent = default(bool);
 
             Console.WriteLine("Enter age: ");
             try
@@ -24,21 +24,28 @@ namespace TicketsPrices
             }
 
             Console.WriteLine("Are you a student? [y/n]");
-            try{
-                var studentString = Console.ReadLine();
-                if(studentString.Equals("y",StringComparison.OrdinalIgnoreCase)){
-                    isStudent = true;
-                }
-                else if(studentString.Equals("n",StringComparison.OrdinalIgnoreCase)){
-                    isStudent = false;
-                }
-                else{
-                    Console.WriteLine("Please enter valid input.");
-                }
+            var studentString = Console.ReadLine();
+            if(studentString.Equals("y",StringComparison.OrdinalIgnoreCase)){
+                isStudent = true;
             }
-            catch{
+            else if(studentString.Equals("n",StringComparison.OrdinalIgnoreCase)){
+                isStudent = false;
+            }
+            else{
+                Console.WriteLine("Please enter valid input.");
+                
+            }
 
+            if(age < 13 || isStudent) {
+                Console.WriteLine("Your ticket costs $8");
             }
+            else if(age >= 13 && age < 65) {
+                Console.WriteLine("Your ticket costs $14");
+            }
+            else {
+                Console.WriteLine("Your ticket costs $10");
+            }
+
         }
     }
 }
